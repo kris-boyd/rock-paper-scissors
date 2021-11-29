@@ -88,7 +88,8 @@ function playRound() {
     return outcome;
 }
 
-let playerScore = 0;
+// keep score for player and computer
+/* let playerScore = 0;
 let computerScore = 0;
 for (let i = 1; i <= 5; i++) {
     let roundWinner = playRound();
@@ -100,18 +101,19 @@ for (let i = 1; i <= 5; i++) {
     console.log(` Round ${i}, The score is You:${playerScore}, Computer: ${computerScore}`)
 
 }
+
 if (playerScore > computerScore) {
     console.log('You win the tournament!')
 
 } else if (computerScore > playerScore) {
     console.log('The computer won the tournament!')
 } else {
-    console.log('The tournament is a tie! Reload the page to play another tournament')
+    console.log('The tournament is a tie! Reload the page to play another tournament') */
 }
 /* return a string to declare the winner, eg. "You Lose! Paper beats Rock"
 
     write function game() that plays 5 rounds
-    keep score for player and computer
+    
         playerScore variable
         computerScore variable
     declare winner at end of 5 rounds
