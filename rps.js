@@ -8,7 +8,7 @@ listen for a button to be clicked
 and play a round of the game */
 
 document.body.addEventListener('click', e => {
-    if (e.target.classList.contains('button') ) {
+    if (e.target.classList.contains('btn-lg') ) {
         let playerSelection = e.target.id;
         playRound(playerSelection);
         
