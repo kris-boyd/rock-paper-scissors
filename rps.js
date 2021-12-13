@@ -1,4 +1,7 @@
 
+//initialize scores
+let playerScore = 0;
+let computerScore = 0;
 
 /* playerSelection
 listen for a button to be clicked
@@ -7,11 +10,11 @@ and play a round of the game */
 document.body.addEventListener('click', e => {
     if (e.target.classList.contains('button') ) {
         let playerSelection = e.target.id;
-        console.log(playerSelection);
         playRound(playerSelection);
+        
     }
 })
-/* make computerPlay function that randomly returns Rock Paper or scissors
+/* computerPlay function that randomly returns Rock Paper or scissors
 computerSelection variable =    
 generate random number between 1 and 3
 
@@ -37,26 +40,22 @@ function computerPlay() {
 */ 
 
 
-function playRound(playerSelection) {
-    /* let playerSelection = playerPlay(); */
+function playRound(playerSelection,winner) {
     let computerSelection = computerPlay();
     let outcome = "";
     let outcomeReason = "";
-    let tied = "";
-    console.log(`${playerSelection} and ${computerSelection}`);
+    if (playerScore == 0) {
+        let winner = document.getElementById('winner');
+        winner.textContent = "";
+    }
+
 
 
     if (playerSelection == computerSelection) {
         outcome = "It\'s a tie!";
         outcomeReason = "Play again!";
-      /*   playerSelection = playerPlay();
-        computerSelection = computerPlay();
-        console.log(`${playerSelection} and ${computerSelection}`); */
     }
-   /*  if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
-        console.log('I don\'t understand your answer, try again!');
-        playerSelection = playerPlay();
-    } */
+ 
     else if (playerSelection == 'rock') {
         if (computerSelection == 'paper') {
             outcome = "You Lose!";
@@ -86,33 +85,46 @@ function playRound(playerSelection) {
 
 
     }
-    console.log(`${outcome} ${outcomeReason}`);
-    let choices = document.getElementById('choices');
-    choices.textContent = `${outcome} ${outcomeReason}`;
-    return outcome;
+    let result = document.getElementById('outcome');
+    result.textContent = `${outcome} ${outcomeReason}`;
+    keepScore(outcome);
 }
 
-// keep score for player and computer
-/* let playerScore = 0;
-let computerScore = 0;
-for (let i = 1; i <= 5; i++) {
-    let roundWinner = playRound();
-    if (roundWinner == "You Win!") {
+function resetScore(){
+    playerScore = 0;
+    computerScore = 0;
+    
+}
+//keep score for player and computer
+function keepScore(outcome) {
+    if (outcome == "You Win!") {
         playerScore += 1;
-    } else if (roundWinner == "You Lose!") {
+    } else if (outcome == "You Lose!") {
         computerScore += 1;
     }
-    console.log(` Round ${i}, The score is You:${playerScore}, Computer: ${computerScore}`)
+    let currentScore = document.getElementById('currentScore');
+    currentScore.textContent = `You: ${playerScore} Computer: ${computerScore}`;
+   
+    if (playerScore >= 5) {
+        winner.textContent = 'You Win!';
+        resetScore();
+    }
+    else if (computerScore >=5) {
+        winner.textContent = "The computer wins!"
+        resetScore();
+    }
+
 
 }
 
-if (playerScore > computerScore) {
+
+/* if (playerScore > computerScore) {
     console.log('You win the tournament!')
 
 } else if (computerScore > playerScore) {
     console.log('The computer won the tournament!')
 } else {
-    console.log('The tournament is a tie! Reload the page to play another tournament') */
+    console.log('The tournament is a tie! Reload the page to play another tournament') */ 
 //}
 /* return a string to declare the winner, eg. "You Lose! Paper beats Rock"
 
