@@ -1,5 +1,16 @@
 
 
+/* playerSelection
+listen for a button to be clicked
+and play a round of the game */
+
+document.body.addEventListener('click', e => {
+    if (e.target.classList.contains('button') ) {
+        let playerSelection = e.target.id;
+        console.log(playerSelection);
+        playRound(playerSelection);
+    }
+})
 /* make computerPlay function that randomly returns Rock Paper or scissors
 computerSelection variable =    
 generate random number between 1 and 3
@@ -20,25 +31,9 @@ function computerPlay() {
 }
 
 
-
-/* playerSelection
-listen for a button to be clicked */
-
-
-
-document.body.addEventListener('click', e => {
-    if (e.target.classList.contains('button') ) {
-        let playerSelection = e.target.id;
-        console.log(playerSelection);
-        playRound(playerSelection);
-    }
-})
-
-
-
 /*  make playRound function
     takes 2 parameters playerSelection and computerSelection
-    variable round winner
+    return outcome
 */ 
 
 
@@ -52,7 +47,8 @@ function playRound(playerSelection) {
 
 
     if (playerSelection == computerSelection) {
-        console.log('It\'s a tie! Re-do!');
+        outcome = "It\'s a tie!";
+        outcomeReason = "Play again!";
       /*   playerSelection = playerPlay();
         computerSelection = computerPlay();
         console.log(`${playerSelection} and ${computerSelection}`); */
@@ -91,6 +87,8 @@ function playRound(playerSelection) {
 
     }
     console.log(`${outcome} ${outcomeReason}`);
+    let choices = document.getElementById('choices');
+    choices.textContent = `${outcome} ${outcomeReason}`;
     return outcome;
 }
 
