@@ -109,7 +109,7 @@ if (playerScore > computerScore) {
     console.log('The computer won the tournament!')
 } else {
     console.log('The tournament is a tie! Reload the page to play another tournament') */
-}
+//}
 /* return a string to declare the winner, eg. "You Lose! Paper beats Rock"
 
     write function game() that plays 5 rounds
