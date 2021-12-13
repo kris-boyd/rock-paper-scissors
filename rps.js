@@ -20,24 +20,30 @@ function computerPlay() {
 }
 
 
-/*
-playerSelection
-prompt
-to lowercase
-*/
-function playerPlay() {
-    selection = prompt('Choose rock, paper, or scissors').toLowerCase();
-    return selection;
-}
-/*
- make playRound function
+
+/* playerSelection
+listen for a button to be clicked */
+
+
+
+document.body.addEventListener('click', e => {
+    if (e.target.classList.contains('button') ) {
+        let playerSelection = e.target.id;
+        console.log(playerSelection);
+        playRound(playerSelection);
+    }
+})
+
+
+
+/*  make playRound function
     takes 2 parameters playerSelection and computerSelection
     variable round winner
-*/
+*/ 
 
 
-function playRound() {
-    let playerSelection = playerPlay();
+function playRound(playerSelection) {
+    /* let playerSelection = playerPlay(); */
     let computerSelection = computerPlay();
     let outcome = "";
     let outcomeReason = "";
@@ -45,17 +51,17 @@ function playRound() {
     console.log(`${playerSelection} and ${computerSelection}`);
 
 
-    while (playerSelection == computerSelection) {
+    if (playerSelection == computerSelection) {
         console.log('It\'s a tie! Re-do!');
-        playerSelection = playerPlay();
+      /*   playerSelection = playerPlay();
         computerSelection = computerPlay();
-        console.log(`${playerSelection} and ${computerSelection}`);
+        console.log(`${playerSelection} and ${computerSelection}`); */
     }
-    if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
+   /*  if (playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors') {
         console.log('I don\'t understand your answer, try again!');
         playerSelection = playerPlay();
-    }
-    if (playerSelection == 'rock') {
+    } */
+    else if (playerSelection == 'rock') {
         if (computerSelection == 'paper') {
             outcome = "You Lose!";
             outcomeReason = "Paper beats Rock!";
@@ -64,7 +70,7 @@ function playRound() {
             outcomeReason = "Rock beats Scissors";
         }
     }
-    if (playerSelection == 'paper') {
+    else if (playerSelection == 'paper') {
         if (computerSelection == 'scissors') {
             outcome = "You Lose!";
             outcomeReason = "Scissors beats Paper!";
@@ -73,7 +79,7 @@ function playRound() {
             outcomeReason = "Paper beats Rock";
         }
     }
-    if (playerSelection == 'scissors') {
+    else if (playerSelection == 'scissors') {
         if (computerSelection == 'rock') {
             outcome = "You Lose!";
             outcomeReason = "Rock beats Scissors!";
